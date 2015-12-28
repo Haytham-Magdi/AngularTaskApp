@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html ng-app="myTaskApp">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+
+
+    <script type="text/javascript" src="~/scripts/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="~/scripts/bootstrap.js"></script>
+    <script type="text/javascript" src="~/scripts/angular.js"></script>
+    <script>
+
+        angular.module('myTaskApp', []);
+
+    </script>
+    <script type="text/javascript" src="~/scripts/app.js"></script>
+
+</head>
+<body>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+</body>
+</html>
