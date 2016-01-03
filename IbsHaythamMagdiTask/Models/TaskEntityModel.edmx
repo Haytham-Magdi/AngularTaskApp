@@ -35,10 +35,10 @@
         <EntityType Name="UserWithUserRoles">
           <Key>
             <PropertyRef Name="UserId" />
-            <PropertyRef Name="UserRole" />
+            <PropertyRef Name="UserRoleId" />
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" />
-          <Property Name="UserRole" Type="int" Nullable="false" />
+          <Property Name="UserRoleId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_UserComments_Users">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -60,7 +60,7 @@
               <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="UserWithUserRoles">
-              <PropertyRef Name="UserRole" />
+              <PropertyRef Name="UserRoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -142,6 +142,7 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="UserComments" Relationship="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users" FromRole="User" ToRole="UserComment" />
           <NavigationProperty Name="UserRoles" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="UserRoles1" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1" FromRole="User" ToRole="UserRole" />
         </EntityType>
         <EntityContainer Name="IbsHaythamMagdiTaskDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -185,6 +186,10 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <AssociationSet Name="UserWithUserRoles1" Association="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="UserComment">
           <Key>
@@ -214,6 +219,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" FromRole="UserRole" ToRole="User" />
+          <NavigationProperty Name="Users1" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1" FromRole="UserRole" ToRole="User" />
         </EntityType>
         <Association Name="UserWithUserRoles">
           <End Type="IbsHaythamMagdiTaskDBModel.UserRole" Role="UserRole" Multiplicity="*" />
@@ -230,6 +236,10 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <Association Name="UserWithUserRoles1">
+          <End Type="IbsHaythamMagdiTaskDBModel.UserRole" Role="UserRole" Multiplicity="*" />
+          <End Type="IbsHaythamMagdiTaskDBModel.User" Role="User" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -270,9 +280,6 @@
             <EndProperty Name="User">
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
-            <EndProperty Name="UserRole">
-              <ScalarProperty Name="Id" ColumnName="UserRole" />
-            </EndProperty>
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_creatediagram" />
@@ -298,6 +305,14 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_upgraddiagrams" />
+          <AssociationSetMapping Name="UserWithUserRoles1" TypeName="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1" StoreEntitySet="UserWithUserRoles">
+            <EndProperty Name="User">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="UserRole">
+              <ScalarProperty Name="Id" ColumnName="UserRoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -10,6 +10,7 @@
         <AssociationConnector Association="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users" />
         <EntityTypeShape EntityType="IbsHaythamMagdiTaskDBModel.UserRole" Width="1.5" PointX="3.125" PointY="1.75" />
         <AssociationConnector Association="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" />
+        <AssociationConnector Association="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

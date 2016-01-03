@@ -9,12 +9,14 @@ using System.Web.Http;
 //using System.Data.Entity.ex;
 using EntityFramework.Extensions;
 using Newtonsoft.Json;
+using System.Web.Mvc;
 
 namespace IbsHaythamMagdiTask.Controllers
 {
     public class UsersApiController : ApiController
     {
         // GET api/<controller>
+        //public JsonResult Get(string email)
         public IEnumerable<User> Get(string email)
         //public IEnumerable<User> Get()
         {
@@ -26,6 +28,7 @@ namespace IbsHaythamMagdiTask.Controllers
                        where (string.IsNullOrEmpty(email) || user.Email.Contains(email))
                        select user).ToList();
 
+            //return Json(ret, JsonRequestBehavior.AllowGet);
             return ret;
         }
 

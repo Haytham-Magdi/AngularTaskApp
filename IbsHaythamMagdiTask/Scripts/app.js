@@ -56,7 +56,7 @@
                         //$scope...init();
 
                     })
-                .error(function (data) {
+                .error(function (data, status) {
 
                     debugger;
 
@@ -167,7 +167,7 @@
                     debugger;
 
                     ctrl.GetUsers();
-                }).error(function (data) {
+                }).error(function (data, status) {
 
                     debugger;
 
