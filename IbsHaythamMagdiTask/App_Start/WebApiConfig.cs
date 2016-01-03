@@ -19,6 +19,10 @@ namespace IbsHaythamMagdiTask
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            //  important to serialize many to many stuff. 
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = 
+                Newtonsoft.Json.ReferenceLoopHandling.Ignore;
         }
     }
 }
