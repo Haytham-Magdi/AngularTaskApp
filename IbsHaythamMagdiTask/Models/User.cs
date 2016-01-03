@@ -18,7 +18,6 @@ namespace IbsHaythamMagdiTask.Models
         {
             this.UserComments = new HashSet<UserComment>();
             this.UserRoles = new HashSet<UserRole>();
-            this.UserRoles1 = new HashSet<UserRole>();
         }
     
         public int Id { get; set; }
@@ -31,6 +30,5 @@ namespace IbsHaythamMagdiTask.Models
     
         public virtual ICollection<UserComment> UserComments { get; set; }
         public virtual ICollection<UserRole> UserRoles { get; set; }
-        public virtual ICollection<UserRole> UserRoles1 { get; set; }
     }
 }

@@ -142,7 +142,6 @@
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="UserComments" Relationship="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users" FromRole="User" ToRole="UserComment" />
           <NavigationProperty Name="UserRoles" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" FromRole="User" ToRole="UserRole" />
-          <NavigationProperty Name="UserRoles1" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1" FromRole="User" ToRole="UserRole" />
         </EntityType>
         <EntityContainer Name="IbsHaythamMagdiTaskDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Users" EntityType="Self.User" />
@@ -219,7 +218,6 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Users" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" FromRole="UserRole" ToRole="User" />
-          <NavigationProperty Name="Users1" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1" FromRole="UserRole" ToRole="User" />
         </EntityType>
         <Association Name="UserWithUserRoles">
           <End Type="IbsHaythamMagdiTaskDBModel.UserRole" Role="UserRole" Multiplicity="*" />
