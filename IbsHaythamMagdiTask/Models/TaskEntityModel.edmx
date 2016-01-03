@@ -129,32 +129,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IbsHaythamMagdiTaskDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IsActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="UserComments" Relationship="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users" FromRole="User" ToRole="UserComment" />
-          <NavigationProperty Name="UserRoles" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" FromRole="User" ToRole="UserRole" />
-        </EntityType>
         <EntityContainer Name="IbsHaythamMagdiTaskDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="UserComments" EntityType="IbsHaythamMagdiTaskDBModel.UserComment" />
-          <AssociationSet Name="FK_UserComments_Users" Association="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users">
-            <End Role="User" EntitySet="Users" />
-            <End Role="UserComment" EntitySet="UserComments" />
-          </AssociationSet>
-          <EntitySet Name="UserRoles" EntityType="IbsHaythamMagdiTaskDBModel.UserRole" />
-          <AssociationSet Name="UserWithUserRoles" Association="IbsHaythamMagdiTaskDBModel.UserWithUserRoles">
-            <End Role="UserRole" EntitySet="UserRoles" />
-            <End Role="User" EntitySet="Users" />
-          </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -185,11 +160,29 @@
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <AssociationSet Name="UserWithUserRoles1" Association="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1">
+          <EntitySet Name="UserComments" EntityType="IbsHaythamMagdiTaskDBModel.UserComment" />
+          <EntitySet Name="UserRoles" EntityType="IbsHaythamMagdiTaskDBModel.UserRole" />
+          <EntitySet Name="Users" EntityType="IbsHaythamMagdiTaskDBModel.User" />
+          <AssociationSet Name="FK_UserComments_Users" Association="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserComment" EntitySet="UserComments" />
+          </AssociationSet>
+          <AssociationSet Name="UserWithUserRoles" Association="IbsHaythamMagdiTaskDBModel.UserWithUserRoles">
             <End Role="UserRole" EntitySet="UserRoles" />
             <End Role="User" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
         <EntityType Name="UserComment">
           <Key>
             <PropertyRef Name="Id" />
@@ -198,6 +191,28 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="Comment" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="User" Relationship="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users" FromRole="UserComment" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="UserComments" Relationship="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users" FromRole="User" ToRole="UserComment" />
+          <NavigationProperty Name="UserRoles" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" FromRole="User" ToRole="UserRole" />
         </EntityType>
         <Association Name="FK_UserComments_Users">
           <End Type="IbsHaythamMagdiTaskDBModel.User" Role="User" Multiplicity="1" />
@@ -211,30 +226,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="UserRole">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Users" Relationship="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" FromRole="UserRole" ToRole="User" />
-        </EntityType>
         <Association Name="UserWithUserRoles">
-          <End Type="IbsHaythamMagdiTaskDBModel.UserRole" Role="UserRole" Multiplicity="*" />
-          <End Type="IbsHaythamMagdiTaskDBModel.User" Role="User" Multiplicity="*" />
-        </Association>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-        <Association Name="UserWithUserRoles1">
           <End Type="IbsHaythamMagdiTaskDBModel.UserRole" Role="UserRole" Multiplicity="*" />
           <End Type="IbsHaythamMagdiTaskDBModel.User" Role="User" Multiplicity="*" />
         </Association>
@@ -244,41 +236,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="IbsHaythamMagdiTaskDBModelStoreContainer" CdmEntityContainer="IbsHaythamMagdiTaskDBEntities">
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="IbsHaythamMagdiTaskDBModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserComments">
-            <EntityTypeMapping TypeName="IbsHaythamMagdiTaskDBModel.UserComment">
-              <MappingFragment StoreEntitySet="UserComments">
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UserRoles">
-            <EntityTypeMapping TypeName="IbsHaythamMagdiTaskDBModel.UserRole">
-              <MappingFragment StoreEntitySet="UserRoles">
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="UserWithUserRoles" TypeName="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" StoreEntitySet="UserWithUserRoles">
-            <EndProperty Name="User">
-              <ScalarProperty Name="Id" ColumnName="UserId" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_alterdiagram" />
           <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_creatediagram" />
           <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_dropdiagram" />
@@ -303,7 +260,37 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="IbsHaythamMagdiTaskDBModel.Store.sp_upgraddiagrams" />
-          <AssociationSetMapping Name="UserWithUserRoles1" TypeName="IbsHaythamMagdiTaskDBModel.UserWithUserRoles1" StoreEntitySet="UserWithUserRoles">
+          <EntitySetMapping Name="UserComments">
+            <EntityTypeMapping TypeName="IbsHaythamMagdiTaskDBModel.UserComment">
+              <MappingFragment StoreEntitySet="UserComments">
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="IbsHaythamMagdiTaskDBModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRoles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IbsHaythamMagdiTaskDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserWithUserRoles" TypeName="IbsHaythamMagdiTaskDBModel.UserWithUserRoles" StoreEntitySet="UserWithUserRoles">
             <EndProperty Name="User">
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
