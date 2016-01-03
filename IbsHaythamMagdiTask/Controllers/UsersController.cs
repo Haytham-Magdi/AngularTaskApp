@@ -72,7 +72,7 @@ namespace IbsHaythamMagdiTask.Controllers
         {
             var dc = new IbsHaythamMagdiTaskDBEntities();
 
-            //dc.Database.Log = message => Trace.WriteLine(message);
+            dc.Database.Log = message => Trace.WriteLine(message);
             //dc.Database.Log
 
 
