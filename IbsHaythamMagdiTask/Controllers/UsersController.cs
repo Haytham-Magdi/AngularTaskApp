@@ -91,6 +91,8 @@ namespace IbsHaythamMagdiTask.Controllers
 
             dc.Users.Attach(user);
 
+
+
             //dc.det .Users.deta Attach(user);
             //dc.Entry<User>.
 
@@ -99,21 +101,18 @@ namespace IbsHaythamMagdiTask.Controllers
 
             //var list_UserRoles = dc.UserRoles.ToList();
 
-            var list_UserRoles = new List<UserRole>();
+            //var list_UserRoles = new List<UserRole>();
 
-            list_UserRoles.Add(new UserRole { Id = 1 });
-            list_UserRoles.Add(new UserRole { Id = 2 });
-            list_UserRoles.Add(new UserRole { Id = 3 });
+            //list_UserRoles.Add(new UserRole { Id = 1 });
+            //list_UserRoles.Add(new UserRole { Id = 2 });
+            //list_UserRoles.Add(new UserRole { Id = 3 });
 
-            foreach (var userRole in list_UserRoles)
-            {
-                //var userRole = dc.UserRoles.FirstOrDefault();
+            //foreach (var userRole in list_UserRoles)
+            //{
+            //    dc.UserRoles.Attach(userRole);
 
-                dc.UserRoles.Attach(userRole);
-
-                user.UserRoles.Add(userRole);
-                //userRole.Users.Add(user);
-            }
+            //    user.UserRoles.Add(userRole);
+            //}
             dc.SaveChanges();
 
             //var dc = new IbsHaythamMagdiTaskDBEntities();
