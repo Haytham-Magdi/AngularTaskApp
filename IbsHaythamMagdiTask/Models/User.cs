@@ -28,7 +28,7 @@ namespace IbsHaythamMagdiTask.Models
         public string Password { get; set; }
         public bool IsActive { get; set; }
     
-        public virtual ICollection<UserComment> UserComments { get; set; }
-        public virtual ICollection<UserRole> UserRoles { get; set; }
+        public ICollection<UserComment> UserComments { get; set; }
+        public ICollection<UserRole> UserRoles { get; set; }
     }
 }

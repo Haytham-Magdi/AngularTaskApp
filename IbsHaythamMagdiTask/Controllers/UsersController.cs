@@ -78,9 +78,12 @@ namespace IbsHaythamMagdiTask.Controllers
 
             //var user0 = dc.Users.FirstOrDefault();
 
-            var user = new User();
+            //var user = new User();
+            //user.Id = 1;
+            //dc.Users.Attach(user);
 
-            user.Id = 1;
+            var user = dc.Users.FirstOrDefault(x => x.Id == 1);
+
 
             //user.Id = user0.Id;
             //user.FirstName = user0.FirstName;
@@ -89,8 +92,18 @@ namespace IbsHaythamMagdiTask.Controllers
             //user.Password = user0.Password;
             //user.IsActive = user0.IsActive;
 
-            dc.Users.Attach(user);
 
+            //var qry1 = from userRole in user.UserRoles
+            //           select userRole;
+            //qry1.dele
+
+            //user.UserRoles.
+
+            //user.UserRoles.Clear();
+
+            //var list_UserRoles = user.UserRoles.ToList();
+
+            //list_UserRoles.Clear();
 
 
             //dc.det .Users.deta Attach(user);
@@ -101,18 +114,19 @@ namespace IbsHaythamMagdiTask.Controllers
 
             //var list_UserRoles = dc.UserRoles.ToList();
 
-            //var list_UserRoles = new List<UserRole>();
+            var list_UserRoles = new List<UserRole>();
 
-            //list_UserRoles.Add(new UserRole { Id = 1 });
-            //list_UserRoles.Add(new UserRole { Id = 2 });
-            //list_UserRoles.Add(new UserRole { Id = 3 });
+            list_UserRoles.Add(new UserRole { Id = 1 });
+            list_UserRoles.Add(new UserRole { Id = 2 });
+            list_UserRoles.Add(new UserRole { Id = 3 });
 
-            //foreach (var userRole in list_UserRoles)
-            //{
-            //    dc.UserRoles.Attach(userRole);
+            foreach (var userRole in list_UserRoles)
+            {
+                dc.UserRoles.Attach(userRole);
 
-            //    user.UserRoles.Add(userRole);
-            //}
+                user.UserRoles.Add(userRole);
+            }
+            
             dc.SaveChanges();
 
             //var dc = new IbsHaythamMagdiTaskDBEntities();
