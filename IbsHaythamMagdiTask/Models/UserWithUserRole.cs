@@ -12,16 +12,13 @@ namespace IbsHaythamMagdiTask.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class UserRole
+    public partial class UserWithUserRole
     {
-        public UserRole()
-        {
-            this.UserWithUserRoles = new HashSet<UserWithUserRole>();
-        }
+        public int UserId { get; set; }
+        public int UserRoleId { get; set; }
+        public Nullable<short> Dmy { get; set; }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
-    
-        public virtual ICollection<UserWithUserRole> UserWithUserRoles { get; set; }
+        public virtual UserRole UserRole { get; set; }
+        public virtual User User { get; set; }
     }
 }

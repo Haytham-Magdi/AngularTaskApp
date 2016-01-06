@@ -120,19 +120,38 @@ namespace IbsHaythamMagdiTask.Controllers
 
                 //var list_UserRoles = dc.UserRoles.ToList();
 
-                var list_UserRoles = new List<UserRole>();
+                //var list_UserRoles = new List<UserRole>();
 
-                list_UserRoles.Add(new UserRole { Id = 1 });
-                list_UserRoles.Add(new UserRole { Id = 2 });
-                //list_UserRoles.Add(new UserRole { Id = 3 });
+                //list_UserRoles.Add(new UserRole { Id = 1 });
+                //list_UserRoles.Add(new UserRole { Id = 2 });
+                ////list_UserRoles.Add(new UserRole { Id = 3 });
 
-                foreach (var userRole in list_UserRoles)
+                //foreach (var userRole in list_UserRoles)
+                //{
+                //    dc.UserRoles.Attach(userRole);
+                //    user.UserRoles.Add(userRole);
+                //}
+
+
+                var list_UserWithUserRoles = new List<UserWithUserRole>();
+
+                list_UserWithUserRoles.Add(new UserWithUserRole { UserId = 1, UserRoleId = 1 });
+                list_UserWithUserRoles.Add(new UserWithUserRole { UserId = 1, UserRoleId = 2 });
+                list_UserWithUserRoles.Add(new UserWithUserRole { UserId = 1, UserRoleId = 3 });
+
+                //list_UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 1 });
+                //list_UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 2 });
+                //list_UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 3 });
+
+                foreach (var userWithUserRole in list_UserWithUserRoles)
                 {
-                    dc.UserRoles.Attach(userRole);
+                    //dc.UserWithUserRoles.Attach(userWithUserRole);
+                    //user.UserWithUserRoles.Add(userWithUserRole);
 
-                    user.UserRoles.Add(userRole);
+                    dc.UserWithUserRoles.Add(userWithUserRole);
                 }
 
+                
                 dc.SaveChanges();
 
                 txn.Commit();

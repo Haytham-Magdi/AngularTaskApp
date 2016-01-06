@@ -301,8 +301,8 @@ public class CodeStringGenerator
     
     public string AccessibilityAndVirtual(string accessibility)
     {
-        //return accessibility + (accessibility != "private" ? " virtual" : "");
-        return accessibility;
+        return accessibility + (accessibility != "private" ? " virtual" : "");
+        //return accessibility;
     }
     
     public string EntityClassOpening(EntityType entity)

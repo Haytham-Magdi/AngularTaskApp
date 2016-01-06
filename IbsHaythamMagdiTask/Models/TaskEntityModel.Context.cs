@@ -20,6 +20,7 @@ namespace IbsHaythamMagdiTask.Models
         public IbsHaythamMagdiTaskDBEntities()
             : base("name=IbsHaythamMagdiTaskDBEntities")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -27,9 +28,11 @@ namespace IbsHaythamMagdiTask.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserComment> UserComments { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<UserWithUserRole> UserWithUserRoles { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

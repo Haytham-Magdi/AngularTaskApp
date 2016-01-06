@@ -17,7 +17,7 @@ namespace IbsHaythamMagdiTask.Models
         public User()
         {
             this.UserComments = new HashSet<UserComment>();
-            this.UserRoles = new HashSet<UserRole>();
+            this.UserWithUserRoles = new HashSet<UserWithUserRole>();
         }
     
         public int Id { get; set; }
@@ -28,7 +28,7 @@ namespace IbsHaythamMagdiTask.Models
         public string Password { get; set; }
         public bool IsActive { get; set; }
     
-        public ICollection<UserComment> UserComments { get; set; }
-        public ICollection<UserRole> UserRoles { get; set; }
+        public virtual ICollection<UserComment> UserComments { get; set; }
+        public virtual ICollection<UserWithUserRole> UserWithUserRoles { get; set; }
     }
 }

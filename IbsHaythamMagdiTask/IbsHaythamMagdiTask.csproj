@@ -946,6 +946,9 @@
     <Compile Include="Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>TaskEntityModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\TaskEntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -968,6 +971,9 @@
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserRole.cs">
+      <DependentUpon>TaskEntityModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserWithUserRole.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
