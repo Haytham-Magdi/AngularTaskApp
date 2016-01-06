@@ -76,58 +76,69 @@ namespace IbsHaythamMagdiTask.Controllers
             //dc.Database.Log
 
 
-            //var user0 = dc.Users.FirstOrDefault();
-
-            //var user = new User();
-            //user.Id = 1;
-            //dc.Users.Attach(user);
-
-            var user = dc.Users.FirstOrDefault(x => x.Id == 1);
-
-
-            //user.Id = user0.Id;
-            //user.FirstName = user0.FirstName;
-            //user.LastName = user0.LastName;
-            //user.UserName = user0.UserName;
-            //user.Password = user0.Password;
-            //user.IsActive = user0.IsActive;
-
-
-            //var qry1 = from userRole in user.UserRoles
-            //           select userRole;
-            //qry1.dele
-
-            //user.UserRoles.
-
-            //user.UserRoles.Clear();
-
-            //var list_UserRoles = user.UserRoles.ToList();
-
-            //list_UserRoles.Clear();
-
-
-            //dc.det .Users.deta Attach(user);
-            //dc.Entry<User>.
-
-            //dc.Users.em
-            //var user1 = dc.Users.FirstOrDefault();
-
-            //var list_UserRoles = dc.UserRoles.ToList();
-
-            var list_UserRoles = new List<UserRole>();
-
-            list_UserRoles.Add(new UserRole { Id = 1 });
-            list_UserRoles.Add(new UserRole { Id = 2 });
-            list_UserRoles.Add(new UserRole { Id = 3 });
-
-            foreach (var userRole in list_UserRoles)
+            using (var txn = dc.Database.BeginTransaction())
+            //using (var txn = new TransactionScope())
             {
-                dc.UserRoles.Attach(userRole);
+                //var user0 = dc.Users.FirstOrDefault();
 
-                user.UserRoles.Add(userRole);
+                var user = new User();
+                user.Id = 1;
+                dc.Users.Attach(user);
+
+                //var user = dc.Users.FirstOrDefault(x => x.Id == 1);
+
+                //user.Id = user0.Id;
+                //user.FirstName = user0.FirstName;
+                //user.LastName = user0.LastName;
+                //user.UserName = user0.UserName;
+                //user.Password = user0.Password;
+                //user.IsActive = user0.IsActive;
+
+
+                //var qry1 = from userRole in user.UserRoles
+                //           select userRole;
+                //qry1.dele
+
+                dc.Database.ExecuteSqlCommand("delete from UserWithUserRoles where UserId = {0}", user.Id);
+
+                //throw new Exception();
+
+                //user.UserRoles.
+
+                //user.UserRoles.Clear();
+
+                //var list_UserRoles = user.UserRoles.ToList();
+
+                //list_UserRoles.Clear();
+
+
+                //dc.det .Users.deta Attach(user);
+                //dc.Entry<User>.
+
+                //dc.Users.em
+                //var user1 = dc.Users.FirstOrDefault();
+
+                //var list_UserRoles = dc.UserRoles.ToList();
+
+                var list_UserRoles = new List<UserRole>();
+
+                list_UserRoles.Add(new UserRole { Id = 1 });
+                list_UserRoles.Add(new UserRole { Id = 2 });
+                //list_UserRoles.Add(new UserRole { Id = 3 });
+
+                foreach (var userRole in list_UserRoles)
+                {
+                    dc.UserRoles.Attach(userRole);
+
+                    user.UserRoles.Add(userRole);
+                }
+
+                dc.SaveChanges();
+
+                txn.Commit();
+
             }
-            
-            dc.SaveChanges();
+
 
             //var dc = new IbsHaythamMagdiTaskDBEntities();
 
