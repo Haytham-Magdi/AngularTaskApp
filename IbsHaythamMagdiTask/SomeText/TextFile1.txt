@@ -1,0 +1,86 @@
+﻿
+
+
+        public ActionResult Try3()
+        {
+            var dc = new IbsHaythamMagdiTaskDBEntities();
+
+            dc.Database.Log = message => Trace.WriteLine(message);
+            //dc.Database.Log
+
+
+            using (var txn = dc.Database.BeginTransaction())
+            //using (var txn = new TransactionScope())
+            {
+                //var member0 = dc.Members.FirstOrDefault();
+
+                var member = new Member();
+
+                member.Id = 1;
+                dc.Members.Attach(member);
+
+                //var member = dc.Members.FirstOrDefault(x => x.Id == 1);
+
+                //member.FirstName = "member0.FirstName";
+                //member.LastName = "member0.LastName";
+                //member.Email = "member0.Email";
+                //member.MemberName = "member0.MemberName";
+                //member.Password = "member0.Password";
+                //member.IsActive = true;
+
+                //dc.Members.Add(member);
+
+                var uwur = new MemberWithBook { BookId = 2, MemberId = member.Id };
+                dc.MemberWithBooks.Attach(uwur);
+                //member.MemberWithBooks.Remove(uwur);
+
+                //var uwur77 = dc.MemberWithBooks.Find(new { BookId = 2, MemberId = member.Id });
+                var uwur77 = dc.MemberWithBooks.Find(member.Id, 2);
+                //member.MemberWithBooks.Fin
+
+                member.MemberWithBooks.Clear();
+
+                ////dc.Database.ExecuteSqlCommand("delete from MemberWithBooks where MemberId = {0}", member.Id);
+                //dc.MemberWithBooks.Where(x => x.MemberId == member.Id).Delete();
+
+                //member.MemberWithBooks.Add(new MemberWithBook { BookId = 1 });
+                //member.MemberWithBooks.Add(new MemberWithBook { BookId = 2 });
+                //member.MemberWithBooks.Add(new MemberWithBook { BookId = 3 });
+
+
+                //var list_MemberWithBooks = new List<MemberWithBook>();
+
+                //list_MemberWithBooks.Add(new MemberWithBook { BookId = 1 });
+                //list_MemberWithBooks.Add(new MemberWithBook { BookId = 2 });
+                //list_MemberWithBooks.Add(new MemberWithBook { BookId = 3 });
+
+                //foreach (var memberWithBook in list_MemberWithBooks)
+                //{
+                //    //dc.MemberWithBooks.Attach(memberWithBook);
+
+                //    //var book = dc.Books.Attach(new Book { Id = memberWithBook.BookId });
+                //    //book.MemberWithBooks.Add(memberWithBook);
+
+                //    member.MemberWithBooks.Add(memberWithBook);
+
+                //    //dc.MemberWithBooks.Add(memberWithBook);
+                //}
+
+
+                dc.SaveChanges();
+
+                txn.Commit();
+
+            }
+
+
+            //var dc = new IbsHaythamMagdiTaskDBEntities();
+
+            //dc.Members.Where(x => x.Id == memberId).Update(x => new Member() { IsActive = active });
+
+
+            //return null;
+
+            return View("Index");
+        }
+

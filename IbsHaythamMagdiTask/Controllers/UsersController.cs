@@ -97,62 +97,41 @@ namespace IbsHaythamMagdiTask.Controllers
 
                 //dc.Users.Add(user);
 
-                //dc.Database.ExecuteSqlCommand("delete from UserWithUserRoles where UserId = {0}", user.Id);
-                dc.UserWithUserRoles.Where(x => x.UserId == user.Id).Delete();
+                var uwur = new UserWithUserRole { UserRoleId = 2, UserId = user.Id };
+                dc.UserWithUserRoles.Attach(uwur);
+                //user.UserWithUserRoles.Remove(uwur);
 
-                //throw new Exception();
+                //var uwur77 = dc.UserWithUserRoles.Find(new { UserRoleId = 2, UserId = user.Id });
+                var uwur77 = dc.UserWithUserRoles.Find(user.Id, 2);
+                //user.UserWithUserRoles.Fin
 
-                //user.UserRoles.
+                user.UserWithUserRoles.Clear();
 
-                //user.UserRoles.Clear();
+                ////dc.Database.ExecuteSqlCommand("delete from UserWithUserRoles where UserId = {0}", user.Id);
+                //dc.UserWithUserRoles.Where(x => x.UserId == user.Id).Delete();
 
-                //var list_UserRoles = user.UserRoles.ToList();
-
-                //list_UserRoles.Clear();
-
-
-                //dc.det .Users.deta Attach(user);
-                //dc.Entry<User>.
-
-                //dc.Users.em
-                //var user1 = dc.Users.FirstOrDefault();
-
-                //var list_UserRoles = dc.UserRoles.ToList();
-
-                //var list_UserRoles = new List<UserRole>();
-
-                //list_UserRoles.Add(new UserRole { Id = 1 });
-                //list_UserRoles.Add(new UserRole { Id = 2 });
-                ////list_UserRoles.Add(new UserRole { Id = 3 });
-
-                //foreach (var userRole in list_UserRoles)
-                //{
-                //    dc.UserRoles.Attach(userRole);
-                //    user.UserRoles.Add(userRole);
-                //}
+                //user.UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 1 });
+                //user.UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 2 });
+                //user.UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 3 });
 
 
-                var list_UserWithUserRoles = new List<UserWithUserRole>();
+                //var list_UserWithUserRoles = new List<UserWithUserRole>();
 
-                //list_UserWithUserRoles.Add(new UserWithUserRole { UserId = 1, UserRoleId = 1 });
-                //list_UserWithUserRoles.Add(new UserWithUserRole { UserId = 1, UserRoleId = 2 });
-                //list_UserWithUserRoles.Add(new UserWithUserRole { UserId = 1, UserRoleId = 3 });
-
-                list_UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 1 });
+                //list_UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 1 });
                 //list_UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 2 });
-                list_UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 3 });
+                //list_UserWithUserRoles.Add(new UserWithUserRole { UserRoleId = 3 });
 
-                foreach (var userWithUserRole in list_UserWithUserRoles)
-                {
-                    //dc.UserWithUserRoles.Attach(userWithUserRole);
-                    
-                    //var userRole = dc.UserRoles.Attach(new UserRole { Id = userWithUserRole.UserRoleId });
-                    //userRole.UserWithUserRoles.Add(userWithUserRole);
-                    
-                    user.UserWithUserRoles.Add(userWithUserRole);
+                //foreach (var userWithUserRole in list_UserWithUserRoles)
+                //{
+                //    //dc.UserWithUserRoles.Attach(userWithUserRole);
 
-                    //dc.UserWithUserRoles.Add(userWithUserRole);
-                }
+                //    //var userRole = dc.UserRoles.Attach(new UserRole { Id = userWithUserRole.UserRoleId });
+                //    //userRole.UserWithUserRoles.Add(userWithUserRole);
+
+                //    user.UserWithUserRoles.Add(userWithUserRole);
+
+                //    //dc.UserWithUserRoles.Add(userWithUserRole);
+                //}
 
 
                 dc.SaveChanges();
@@ -172,6 +151,74 @@ namespace IbsHaythamMagdiTask.Controllers
             return View("Index");
         }
 
+        public ActionResult Try3()
+        {
+            var dc = new IbsHaythamMagdiTaskDBEntities();
+
+            dc.Database.Log = message => Trace.WriteLine(message);
+            
+
+            using (var txn = dc.Database.BeginTransaction())
+            //using (var txn = new TransactionScope())
+            {
+                //var member0 = dc.Members.FirstOrDefault();
+                
+                var member = new Member();
+                
+                member.Id = 1;
+                dc.Members.Attach(member);
+
+                //member.Name = "member0.Name";
+
+                //dc.Members.Add(member);
+
+                //var book = new Book { Id = 2 };
+                //dc.Books.Attach(book);
+                //member.Books.Remove(book);
+
+                //member.Books.Clear();
+
+                var list1 = from member1 in dc.Members.Where(x => x.Id == member.Id)
+                             //join book1 in member1.Books
+                             select book1 in member1.Books
+                                 
+                             //    .Include(XmlSiteMapProvider =)
+                             
+                             //member.Books;
+
+                dc.Database.ExecuteSqlCommand("delete from MemberWithBooks where MemberId = {0}", member.Id);
+
+
+                var list_Books = new List<Book>();
+
+                list_Books.Add(new Book { Id = 1 });
+                list_Books.Add(new Book { Id = 2 });
+                list_Books.Add(new Book { Id = 3 });
+
+                foreach (var book in list_Books)
+                {
+                    dc.Books.Attach(book);
+
+                    member.Books.Add(book);
+                }
+
+
+                dc.SaveChanges();
+
+                txn.Commit();
+
+            }
+
+
+            //var dc = new IbsHaythamMagdiTaskDBEntities();
+
+            //dc.Members.Where(x => x.Id == memberId).Update(x => new Member() { IsActive = active });
+
+
+            //return null;
+
+            return View("Index");
+        }
 
 
     }

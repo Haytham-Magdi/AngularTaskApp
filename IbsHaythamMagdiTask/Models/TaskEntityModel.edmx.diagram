@@ -5,7 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="cbf33696ca284b75a6e13ab5b489bb56" Name="Diagram1">
-        <EntityTypeShape EntityType="IbsHaythamMagdiTaskDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="2" />
+        <EntityTypeShape EntityType="IbsHaythamMagdiTaskDBModel.Book" Width="1.5" PointX="5.75" PointY="2.25" />
+        <EntityTypeShape EntityType="IbsHaythamMagdiTaskDBModel.Member" Width="1.5" PointX="8" PointY="2.125" />
+        <EntityTypeShape EntityType="IbsHaythamMagdiTaskDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5" />
         <EntityTypeShape EntityType="IbsHaythamMagdiTaskDBModel.UserComment" Width="1.5" PointX="3" PointY="6.375" />
         <EntityTypeShape EntityType="IbsHaythamMagdiTaskDBModel.UserRole" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="IbsHaythamMagdiTaskDBModel.User" Width="1.5" PointX="0.75" PointY="3.125" />
@@ -13,6 +15,7 @@
         <AssociationConnector Association="IbsHaythamMagdiTaskDBModel.FK_UserComments_Users" />
         <AssociationConnector Association="IbsHaythamMagdiTaskDBModel.FK_UserWithUserRoles_UserRoles" />
         <AssociationConnector Association="IbsHaythamMagdiTaskDBModel.FK_UserWithUserRoles_Users" />
+        <AssociationConnector Association="IbsHaythamMagdiTaskDBModel.MemberWithBooks" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

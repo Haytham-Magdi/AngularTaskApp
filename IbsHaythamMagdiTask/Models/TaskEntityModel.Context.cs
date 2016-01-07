@@ -28,6 +28,8 @@ namespace IbsHaythamMagdiTask.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Book> Books { get; set; }
+        public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<UserComment> UserComments { get; set; }
         public virtual DbSet<UserRole> UserRoles { get; set; }
