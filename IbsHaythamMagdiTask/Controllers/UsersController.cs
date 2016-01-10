@@ -165,13 +165,14 @@ namespace IbsHaythamMagdiTask.Controllers
 
                 //             select book1;
 
-                //var list1 = from member1 in dc.Members
-                //            //join book1 in member1.Books
-                //            join cmt1 in member1. dc.Books on member1.Id equals book1.Id
+                var list1 = (from member1 in dc.Members.Where(x => x.Id == 1)
+                            from book1 in member1.Books
+                            select book1).ToList();
 
-                //            select book1;
-
-
+                var list2 = (from user1 in dc.Users
+                             where user1.Id == 1
+                             from cmt in user1.UserComments
+                             select cmt).ToList();
 
             }
 
@@ -195,10 +196,10 @@ namespace IbsHaythamMagdiTask.Controllers
 
                 //member.Books.Clear();
 
-                //var list1 = from member1 in dc.Members.Where(x => x.Id == member.Id)
-                //             //join book1 in member1.Books
-                //             select book1 in member1.Books
-                                 
+                var list1 = (from member1 in dc.Members.Where(x => x.Id == member.Id)
+                            from book1 in member1.Books
+                            select book1).ToList();
+
                              //    .Include(XmlSiteMapProvider =)
                              
                              //member.Books;
