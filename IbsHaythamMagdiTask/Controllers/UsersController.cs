@@ -156,7 +156,24 @@ namespace IbsHaythamMagdiTask.Controllers
             var dc = new IbsHaythamMagdiTaskDBEntities();
 
             dc.Database.Log = message => Trace.WriteLine(message);
-            
+
+            {
+                //var list1 = from member1 in dc.Members.Where(x => x.Id == 1)
+                //var list1 = from member1 in dc.Members
+                //             //join book1 in member1.Books
+                //             join book1 in dc.Books on member1.Id equals book1.Id
+
+                //             select book1;
+
+                //var list1 = from member1 in dc.Members
+                //            //join book1 in member1.Books
+                //            join cmt1 in member1. dc.Books on member1.Id equals book1.Id
+
+                //            select book1;
+
+
+
+            }
 
             using (var txn = dc.Database.BeginTransaction())
             //using (var txn = new TransactionScope())
@@ -178,9 +195,9 @@ namespace IbsHaythamMagdiTask.Controllers
 
                 //member.Books.Clear();
 
-                var list1 = from member1 in dc.Members.Where(x => x.Id == member.Id)
-                             //join book1 in member1.Books
-                             select book1 in member1.Books
+                //var list1 = from member1 in dc.Members.Where(x => x.Id == member.Id)
+                //             //join book1 in member1.Books
+                //             select book1 in member1.Books
                                  
                              //    .Include(XmlSiteMapProvider =)
                              
