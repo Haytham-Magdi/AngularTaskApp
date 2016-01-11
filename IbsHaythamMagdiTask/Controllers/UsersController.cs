@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using EntityFramework.Extensions;
 using System.Diagnostics;
+using System.Data.Entity;
 
 namespace IbsHaythamMagdiTask.Controllers
 {
@@ -196,13 +197,20 @@ namespace IbsHaythamMagdiTask.Controllers
 
                 //member.Books.Clear();
 
-                var list1 = (from member1 in dc.Members.Where(x => x.Id == member.Id)
-                            from book1 in member1.Books
-                            select book1).ToList();
-
-                             //    .Include(XmlSiteMapProvider =)
+                //var list1 = (from member1 in dc.Members.Where(x => x.Id == member.Id)
                              
-                             //member.Books;
+                //            from book1 in member1.Books
+                //            select book1).ToList();
+
+
+                var list1 = (from member1 in dc.Members
+                             //.Include(x => x.Books)
+                                 .Where(x => x.Id == member.Id)
+
+                             from book1 in member1.Books
+                             select book1).ToList();
+
+                
 
                 dc.Database.ExecuteSqlCommand("delete from MemberWithBooks where MemberId = {0}", member.Id);
 
