@@ -166,14 +166,14 @@ namespace IbsHaythamMagdiTask.Controllers
 
                 //             select book1;
 
-                var list1 = (from member1 in dc.Members.Where(x => x.Id == 1)
-                            from book1 in member1.Books
-                            select book1).ToList();
+                //var list1 = (from member1 in dc.Members.Where(x => x.Id == 1)
+                //             from book1 in member1.Books
+                //             select book1).ToList();
 
-                var list2 = (from user1 in dc.Users
-                             where user1.Id == 1
-                             from cmt in user1.UserComments
-                             select cmt).ToList();
+                //var list2 = (from user1 in dc.Users
+                //             where user1.Id == 1
+                //             from cmt in user1.UserComments
+                //             select cmt).ToList();
 
             }
 
@@ -181,9 +181,9 @@ namespace IbsHaythamMagdiTask.Controllers
             //using (var txn = new TransactionScope())
             {
                 //var member0 = dc.Members.FirstOrDefault();
-                
+
                 var member = new Member();
-                
+
                 member.Id = 1;
                 dc.Members.Attach(member);
 
@@ -198,19 +198,27 @@ namespace IbsHaythamMagdiTask.Controllers
                 //member.Books.Clear();
 
                 //var list1 = (from member1 in dc.Members.Where(x => x.Id == member.Id)
-                             
+
                 //            from book1 in member1.Books
                 //            select book1).ToList();
 
 
+                // important to revise.
+                //var list1 = (from member1 in dc.Members
+                //             .Include(x => x.Books)
+                //                 .Where(x => x.Id == member.Id)
+
+                //             from book1 in member1.Books
+                //             select member1).ToList();
+
                 var list1 = (from member1 in dc.Members
-                             //.Include(x => x.Books)
                                  .Where(x => x.Id == member.Id)
+                             .Include(x => x.Books)
 
                              from book1 in member1.Books
-                             select book1).ToList();
+                             select member1).ToList();
 
-                
+
 
                 dc.Database.ExecuteSqlCommand("delete from MemberWithBooks where MemberId = {0}", member.Id);
 
