@@ -155,19 +155,19 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\angular.min.js.map" />
-    <EntityDeploy Include="Models\TaskEntityModel.edmx">
+    <EntityDeploy Include="Data\Models\TaskEntityModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TaskEntityModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\TaskEntityModel.Context.tt">
+    <Content Include="Data\Models\TaskEntityModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TaskEntityModel.edmx</DependentUpon>
       <LastGenOutput>TaskEntityModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\TaskEntityModel.edmx.diagram">
+    <Content Include="Data\Models\TaskEntityModel.edmx.diagram">
       <DependentUpon>TaskEntityModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\TaskEntityModel.tt">
+    <Content Include="Data\Models\TaskEntityModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TaskEntityModel.edmx</DependentUpon>
       <LastGenOutput>TaskEntityModel.cs</LastGenOutput>
@@ -941,46 +941,46 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Book.cs">
+    <Compile Include="Data\Models\Book.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Member.cs">
+    <Compile Include="Data\Models\Member.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+    <Compile Include="Data\Models\sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+    <Compile Include="Data\Models\sp_helpdiagrams_Result.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\sysdiagram.cs">
+    <Compile Include="Data\Models\sysdiagram.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskEntityModel.Context.cs">
+    <Compile Include="Data\Models\TaskEntityModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskEntityModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskEntityModel.cs">
+    <Compile Include="Data\Models\TaskEntityModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\TaskEntityModel.Designer.cs">
+    <Compile Include="Data\Models\TaskEntityModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TaskEntityModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\User.cs">
+    <Compile Include="Data\Models\User.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserComment.cs">
+    <Compile Include="Data\Models\UserComment.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserRole.cs">
+    <Compile Include="Data\Models\UserRole.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\UserWithUserRole.cs">
+    <Compile Include="Data\Models\UserWithUserRole.cs">
       <DependentUpon>TaskEntityModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

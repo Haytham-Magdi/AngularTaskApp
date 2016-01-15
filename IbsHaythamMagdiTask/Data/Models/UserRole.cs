@@ -7,22 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IbsHaythamMagdiTask.Models
+namespace IbsHaythamMagdiTask.Data.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Member
+    public partial class UserRole
     {
-        public Member()
+        public UserRole()
         {
-            this.Books = new HashSet<Book>();
+            this.UserWithUserRoles = new HashSet<UserWithUserRole>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
-        public int UserId { get; set; }
     
-        public virtual ICollection<Book> Books { get; set; }
+        public virtual ICollection<UserWithUserRole> UserWithUserRoles { get; set; }
     }
 }

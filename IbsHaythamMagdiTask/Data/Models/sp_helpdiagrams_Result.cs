@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IbsHaythamMagdiTask.Models
+namespace IbsHaythamMagdiTask.Data.Models
 {
     using System;
     

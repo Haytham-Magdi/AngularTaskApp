@@ -7,18 +7,17 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace IbsHaythamMagdiTask.Models
+namespace IbsHaythamMagdiTask.Data.Models
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class UserWithUserRole
+    public partial class UserComment
     {
+        public int Id { get; set; }
         public int UserId { get; set; }
-        public int UserRoleId { get; set; }
-        public Nullable<short> Dmy { get; set; }
+        public string Comment { get; set; }
     
-        public virtual UserRole UserRole { get; set; }
         public virtual User User { get; set; }
     }
 }
