@@ -13,10 +13,15 @@ namespace IbsHaythamMagdiTask.Data.Models
     
     public partial class sp_helpdiagrams_Result
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        [Required]
+    public string Database { get; set; } // hhh
+        [Required]
+    public string Name { get; set; } // hhh
+        [Required]
+    public int ID { get; set; } // hhh
+        [Required]
+    public string Owner { get; set; } // hhh
+        [Required]
+    public int OwnerID { get; set; } // hhh
     }
 }

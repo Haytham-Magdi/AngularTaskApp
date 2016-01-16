@@ -12,6 +12,8 @@ namespace IbsHaythamMagdiTask.Data.Models
     using System;
     using System.Collections.Generic;
     
+    using System.ComponentModel.DataAnnotations;
+    
     public partial class Book
     {
         public Book()
@@ -19,8 +21,12 @@ namespace IbsHaythamMagdiTask.Data.Models
             this.Members = new HashSet<Member>();
         }
     
-        public int Id { get; set; }
-        public string Name { get; set; }
+    
+        [Required]
+    public int Id { get; set; } // hhh
+    
+        [Required]
+    public string Name { get; set; } // hhh
     
         public virtual ICollection<Member> Members { get; set; }
     }

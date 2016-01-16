@@ -12,12 +12,24 @@ namespace IbsHaythamMagdiTask.Data.Models
     using System;
     using System.Collections.Generic;
     
+    using System.ComponentModel.DataAnnotations;
+    
     public partial class sysdiagram
     {
-        public string name { get; set; }
-        public int principal_id { get; set; }
-        public int diagram_id { get; set; }
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+    
+        [Required]
+    public string name { get; set; } // hhh
+    
+        [Required]
+    public int principal_id { get; set; } // hhh
+    
+        [Required]
+    public int diagram_id { get; set; } // hhh
+    
+        [Required]
+    public Nullable<int> version { get; set; } // hhh
+    
+        [Required]
+    public byte[] definition { get; set; } // hhh
     }
 }

@@ -12,6 +12,8 @@ namespace IbsHaythamMagdiTask.Data.Models
     using System;
     using System.Collections.Generic;
     
+    using System.ComponentModel.DataAnnotations;
+    
     public partial class User
     {
         public User()
@@ -20,13 +22,27 @@ namespace IbsHaythamMagdiTask.Data.Models
             this.UserWithUserRoles = new HashSet<UserWithUserRole>();
         }
     
-        public int Id { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Email { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public bool IsActive { get; set; }
+    
+        [Required]
+    public int Id { get; set; } // hhh
+    
+        [Required]
+    public string FirstName { get; set; } // hhh
+    
+        [Required]
+    public string LastName { get; set; } // hhh
+    
+        [Required]
+    public string Email { get; set; } // hhh
+    
+        [Required]
+    public string UserName { get; set; } // hhh
+    
+        [Required]
+    public string Password { get; set; } // hhh
+    
+        [Required]
+    public bool IsActive { get; set; } // hhh
     
         public virtual ICollection<UserComment> UserComments { get; set; }
         public virtual ICollection<UserWithUserRole> UserWithUserRoles { get; set; }

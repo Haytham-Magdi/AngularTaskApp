@@ -24,6 +24,8 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
     BeginNamespace(code);
 #>
 <#=codeStringGenerator.UsingDirectives(inHeader: false)#>
+using System.ComponentModel.DataAnnotations;
+
 <#=codeStringGenerator.EntityClassOpening(entity)#>
 {
 <#
@@ -69,6 +71,7 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
         foreach (var edmProperty in simpleProperties)
         {
 #>
+
     <#=codeStringGenerator.Property(edmProperty)#>
 <#
         }
@@ -276,14 +279,20 @@ public class CodeStringGenerator
 
     public string Property(EdmProperty edmProperty)
     {
-        return string.Format(
+		string ret = "";
+
+		ret += "[Required]" + Environment.NewLine;
+
+        ret += string.Format(
             CultureInfo.InvariantCulture,
-            "{0} {1} {2} {{ {3}get; {4}set; }}",
+            "{0} {1} {2} {{ {3}get; {4}set; }} // hhh",
             Accessibility.ForProperty(edmProperty),
             _typeMapper.GetTypeName(edmProperty.TypeUsage),
             _code.Escape(edmProperty),
             _code.SpaceAfter(Accessibility.ForGetter(edmProperty)),
             _code.SpaceAfter(Accessibility.ForSetter(edmProperty)));
+			
+		return ret;
     }
 
     public string NavigationProperty(NavigationProperty navProp)

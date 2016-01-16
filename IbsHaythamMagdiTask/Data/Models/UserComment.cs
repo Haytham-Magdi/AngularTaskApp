@@ -12,11 +12,19 @@ namespace IbsHaythamMagdiTask.Data.Models
     using System;
     using System.Collections.Generic;
     
+    using System.ComponentModel.DataAnnotations;
+    
     public partial class UserComment
     {
-        public int Id { get; set; }
-        public int UserId { get; set; }
-        public string Comment { get; set; }
+    
+        [Required]
+    public int Id { get; set; } // hhh
+    
+        [Required]
+    public int UserId { get; set; } // hhh
+    
+        [Required]
+    public string Comment { get; set; } // hhh
     
         public virtual User User { get; set; }
     }
