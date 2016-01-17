@@ -13,8 +13,10 @@ namespace IbsHaythamMagdiTask.Data.Models
     
     public partial class sp_helpdiagramdefinition_Result
     {
+    //	three
         [Required]
     public Nullable<int> version { get; set; } // hhh
+    //	three
         [Required]
     public byte[] definition { get; set; } // hhh
     }

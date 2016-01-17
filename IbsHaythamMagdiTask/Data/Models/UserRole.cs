@@ -22,9 +22,11 @@ namespace IbsHaythamMagdiTask.Data.Models
         }
     
     
+    //	one
         [Required]
     public int Id { get; set; } // hhh
     
+    //	one
         [Required]
     public string Name { get; set; } // hhh
     

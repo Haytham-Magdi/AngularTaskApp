@@ -17,12 +17,15 @@ namespace IbsHaythamMagdiTask.Data.Models
     public partial class UserWithUserRole
     {
     
+    //	one
         [Required]
     public int UserId { get; set; } // hhh
     
+    //	one
         [Required]
     public int UserRoleId { get; set; } // hhh
     
+    //	one
         [Required]
     public Nullable<short> Dmy { get; set; } // hhh
     

@@ -17,18 +17,23 @@ namespace IbsHaythamMagdiTask.Data.Models
     public partial class sysdiagram
     {
     
+    //	one
         [Required]
     public string name { get; set; } // hhh
     
+    //	one
         [Required]
     public int principal_id { get; set; } // hhh
     
+    //	one
         [Required]
     public int diagram_id { get; set; } // hhh
     
+    //	one
         [Required]
     public Nullable<int> version { get; set; } // hhh
     
+    //	one
         [Required]
     public byte[] definition { get; set; } // hhh
     }

@@ -17,12 +17,15 @@ namespace IbsHaythamMagdiTask.Data.Models
     public partial class UserComment
     {
     
+    //	one
         [Required]
     public int Id { get; set; } // hhh
     
+    //	one
         [Required]
     public int UserId { get; set; } // hhh
     
+    //	one
         [Required]
     public string Comment { get; set; } // hhh
     

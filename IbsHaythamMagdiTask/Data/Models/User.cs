@@ -23,24 +23,31 @@ namespace IbsHaythamMagdiTask.Data.Models
         }
     
     
+    //	one
         [Required]
     public int Id { get; set; } // hhh
     
+    //	one
         [Required]
     public string FirstName { get; set; } // hhh
     
+    //	one
         [Required]
     public string LastName { get; set; } // hhh
     
+    //	one
         [Required]
     public string Email { get; set; } // hhh
     
+    //	one
         [Required]
     public string UserName { get; set; } // hhh
     
+    //	one
         [Required]
     public string Password { get; set; } // hhh
     
+    //	one
         [Required]
     public bool IsActive { get; set; } // hhh
     
