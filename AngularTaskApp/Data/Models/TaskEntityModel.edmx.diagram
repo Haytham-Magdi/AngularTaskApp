@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cbf33696ca284b75a6e13ab5b489bb56" Name="Diagram1">
+        <EntityTypeShape EntityType="AngularTaskAppDBModel.Book" Width="1.5" PointX="5.75" PointY="2.25" />
+        <EntityTypeShape EntityType="AngularTaskAppDBModel.Member" Width="1.5" PointX="8" PointY="2.125" />
+        <EntityTypeShape EntityType="AngularTaskAppDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="5" />
+        <EntityTypeShape EntityType="AngularTaskAppDBModel.UserComment" Width="1.5" PointX="3" PointY="6.375" />
+        <EntityTypeShape EntityType="AngularTaskAppDBModel.UserRole" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="AngularTaskAppDBModel.User" Width="1.5" PointX="0.75" PointY="3.125" />
+        <EntityTypeShape EntityType="AngularTaskAppDBModel.UserWithUserRole" Width="1.5" PointX="3" PointY="3.5" />
+        <AssociationConnector Association="AngularTaskAppDBModel.FK_UserComments_Users" />
+        <AssociationConnector Association="AngularTaskAppDBModel.FK_UserWithUserRoles_UserRoles" />
+        <AssociationConnector Association="AngularTaskAppDBModel.FK_UserWithUserRoles_Users" />
+        <AssociationConnector Association="AngularTaskAppDBModel.MemberWithBooks" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
